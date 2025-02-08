@@ -14,12 +14,14 @@ function generateId(): string {
 }
 
 const illegalHeadingCharsRegex = /[!"#$%&()*+,.:;<=>?@^`{|}~\/\[\]\\]/g;
+
 function sanitizeHeading(heading: string) {
   return heading
-    .replace(illegalHeadingCharsRegex, " ")
-    .replace(/\s+/g, " ")
-    .trim();
+    .replace(illegalHeadingCharsRegex, "")
+    .trim()
+    .replace(/\s+/g, "%20"); // Replace spaces with "%20"
 }
+
 
 function shouldInsertAfter(block: ListItemCache | SectionCache) {
   if ((block as any).type) {
